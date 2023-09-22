@@ -1,0 +1,13 @@
+# macOS-specific files
+.DS_Store
+
+# eclipse-specific files
+/.settings/
+.project
+.classpath
+
+/target/
+build.sh
+
+# intellij files
+/.idea/
