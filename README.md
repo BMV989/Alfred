@@ -5,6 +5,6 @@ simple chatbot written in java
 ## Quick Start
 
 ```
-mvn package
+mvn compile assembly:single
 java -jar ./target/Alfred.jar 
 ```
