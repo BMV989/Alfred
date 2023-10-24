@@ -7,13 +7,26 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
 public class TelegramBot extends TelegramLongPollingBot {
+    private Update up;
     @Override
     public void onUpdateReceived(Update update) {
-        if (update.hasMessage() && update.getMessage().hasText()) {
-            String message = update.getMessage().getText();
+        /*
+        создать разные методы для update, чтобы разбить его JSON
+        формат на текст, картинки, файлы и т.д.
+        Условно здесь будет проверка не update.getMessage().hasText(),
+        а просто hasMessage или что-то типо того, причём желательно
+        это всё в отдельный класс вынести
+        */
+        this.up = update;
+        System.out.println(up);
+        handleUpdate();
+    }
+    private void handleUpdate() {
+        if (up.hasMessage() && up.getMessage().hasText()) {
+            String message = up.getMessage().getText();
             System.out.println(message);
             TelegramCommandHandler handler = new TelegramCommandHandler();
-            sendMsg(update.getMessage().getChatId(), handler.handleCommand(message));
+            handler.handleCommand(up.getMessage().getText(), up.getMessage().getChatId());
         }
     }
 
@@ -32,7 +45,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
     @Override
     public String getBotUsername() {
-        return System.getenv("BOT_USERNAME");
+        return "PersonalMusicalButlerBot";
     }
     @Override
     public String getBotToken() {

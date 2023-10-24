@@ -1,14 +1,22 @@
 package org.chatbot.app.Alfred.telegram;
+
 public class TelegramCommandHandler {
-    public String handleCommand(String command) {
-        return switch (command) {
-            case "/start" -> "Hello user! What can I do for you?";
-            case "/info" -> "this bot was created by Bebralover team";
-            case "/help" -> """
+    TelegramBot Tg = new TelegramBot();
+    /*
+    нужно исправить на void, ибо команды вообще разное возращают,
+    обычно метод send message с самим сообщением, либо делают запросы
+    по апишкам, файлам на локал машине, бд в идиале.
+     */
+    public void handleCommand(String command, Long chatId) {
+        switch (command) {
+            case "/start" -> Tg.sendMsg(chatId,"Hello user! What can I do for you?");
+            case "/info" -> Tg.sendMsg(chatId,"this bot was created by Bebralover team");
+            case "/help" -> Tg.sendMsg(chatId,"""
                 this bot has such commands:
                 /help
-                /info""";
-            default -> "There's no such command!/help";
+                /info""");
+            default -> Tg.sendMsg(chatId,"There's no such command!/help");
         };
     }
+
 }
