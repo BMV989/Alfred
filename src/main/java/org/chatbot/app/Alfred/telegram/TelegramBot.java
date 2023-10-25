@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
 public class TelegramBot extends TelegramLongPollingBot {
-    private Update up;
+    private Update update;
     @Override
     public void onUpdateReceived(Update update) {
         /*
@@ -17,27 +17,30 @@ public class TelegramBot extends TelegramLongPollingBot {
         а просто hasMessage или что-то типо того, причём желательно
         это всё в отдельный класс вынести
         */
-        this.up = update;
-        System.out.println(up);
+        this.update = update;
+        System.out.println(update);
         handleUpdate();
     }
     private void handleUpdate() {
-        if (up.hasMessage() && up.getMessage().hasText()) {
-            String message = up.getMessage().getText();
+        if (update.hasMessage() && update.getMessage().hasText()) {
+            String message = update.getMessage().getText();
             System.out.println(message);
             TelegramCommandHandler handler = new TelegramCommandHandler();
-            handler.handleCommand(up.getMessage().getText(), up.getMessage().getChatId());
+            handler.handleCommand(update.getMessage().getText(), update.getMessage().getChatId());
         }
     }
 
-    public void sendMsg(Long chatId, String message) {
+    protected SendMessage getMessage(Long chatId, String message){
         SendMessage sendMessage = SendMessage
-            .builder()
-            .chatId(chatId)
-            .text(message)
-            .build();
+                .builder()
+                .chatId(chatId)
+                .text(message)
+                .build();
+        return sendMessage;
+    }
+    public void sendMsg(Long chatId, String message) {
         try {
-            execute(sendMessage);
+            execute(getMessage(chatId, message));
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
