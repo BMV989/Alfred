@@ -16,6 +16,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         Условно здесь будет проверка не update.getMessage().hasText(),
         а просто hasMessage или что-то типо того, причём желательно
         это всё в отдельный класс вынести
+        (выполнение: 50 на 50, вроде все ок)
         */
         this.update = update;
         System.out.println(update);
@@ -31,12 +32,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     protected SendMessage getMessage(Long chatId, String message){
-        SendMessage sendMessage = SendMessage
+        return SendMessage
                 .builder()
                 .chatId(chatId)
                 .text(message)
                 .build();
-        return sendMessage;
     }
     public void sendMsg(Long chatId, String message) {
         try {
@@ -46,6 +46,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
     }
+    // Возможно имя бота сделать переменной окружения?
     @Override
     public String getBotUsername() {
         return "PersonalMusicalButlerBot";
