@@ -20,14 +20,31 @@ public class TelegramCommandHandler {
     (выполнение: 0%)
     */
     public void handleCommand(String command, Long chatId) {
-        switch (command) {
-            case "/start" -> tg.sendMsg(chatId,"Hello user! What can I do for you?");
-            case "/info" -> tg.sendMsg(chatId,"this bot was created by Bebralover team");
-            case "/help" -> tg.sendMsg(chatId,"""
+        String key = command.split(" ")[0].toString();
+        String text = command.split(" ")[1].toString();
+        switch (key) {
+            case "/start":
+                tg.sendMsg(chatId,"Hello user! What can I do for you?");
+                break;
+            case "/info":
+                tg.sendMsg(chatId,"this bot was created by Bebralover team");
+                break;
+            case "/help":
+                tg.sendMsg(chatId,"""
                 this bot has such commands:
                 /help
                 /info""");
-            default -> tg.sendMsg(chatId,"There's no such command!/help");
+                break;
+            case "/search":
+                Search search = new Search(text);
+                search.smart_search();
+                tg.sendMsg(chatId,search.get_result());
+                break;
+            case "/history":
+                break;
+            default:
+                tg.sendMsg(chatId,"There's no such command!/help");
+                break;
         };
     }
 
