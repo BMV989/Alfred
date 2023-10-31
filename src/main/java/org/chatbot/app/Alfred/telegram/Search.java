@@ -10,12 +10,14 @@ public class Search {
     //private String [] links;
     private final ArrayList<String> links = new ArrayList<>();
     private final String text;
-    Search(String text){
+    private final Long chatId;
+    public Search(String text, Long chatId) {
         this.text = text;
+        this.chatId = chatId;
         try {
             File output = new File("./src/main/java/org/chatbot/app/Alfred/resources/hist.txt");
             FileWriter writer = new FileWriter(output, true);
-            writer.write(text + "\n");
+            writer.write(String.format("%s:%s\n", this.chatId, text));
             writer.flush();
             writer.close();
         }

@@ -32,6 +32,7 @@ public class TelegramCommandHandler {
         String command = context.getMessage().getText();
         String key = command.split(" ")[0];
         if (command.split(" ").length > 1) {
+            // проблема с тем что берем только 1 индекс (больше одно слова не читает)
             this.text = command.split(" ")[1];
         }
         switch (key) {
@@ -49,7 +50,7 @@ public class TelegramCommandHandler {
                 /info""");
                 break;
             case "/search":
-                Search search = new Search(text);
+                Search search = new Search(text, context.getMessage().getChatId());
                 search.smartSearch();
                 tg.sendMsg(chatId, search.getResult());
                 break;
