@@ -8,13 +8,12 @@ import java.util.ArrayList;
 public class Search {
     // for future
     //private String [] links;
-    ArrayList<String> links = new ArrayList<>();
-    //
-    private String text;
+    private final ArrayList<String> links = new ArrayList<>();
+    private final String text;
     Search(String text){
         this.text = text;
         try {
-            File output = new File("D:/intellij/code/Alfred/src/main/java/org/chatbot/app/Alfred/resources/hist.txt");
+            File output = new File("./src/main/java/org/chatbot/app/Alfred/resources/hist.txt");
             FileWriter writer = new FileWriter(output, true);
             writer.write(text + "\n");
             writer.flush();
@@ -24,19 +23,19 @@ public class Search {
             System.out.println(ex.getMessage());
         }
     }
-    public void smart_search(){
+    public void smartSearch(){
         System.out.println(text);
     }
-    public String get_result(){
-        if(links.size() == 0){
+    public String getResult(){
+        if(links.isEmpty()){
             return "Nothing was found for your query :(";
         }
         else{
-            String ans = "";
-            for(int i = 0; i < links.size(); i++){
-                ans += links.get(i) + "\n";
+            StringBuilder ans = new StringBuilder();
+            for (String link : links) {
+                ans.append(link).append("\n");
             }
-            return ans;
+            return ans.toString();
         }
     }
 }

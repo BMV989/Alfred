@@ -26,8 +26,8 @@ public class TelegramBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText();
             System.out.println(message);
-            TelegramCommandHandler handler = new TelegramCommandHandler();
-            handler.handleCommand(update.getMessage().getText(), update.getMessage().getChatId());
+            TelegramCommandHandler handler = new TelegramCommandHandler(update);
+            handler.handleCommand();
         }
     }
 
