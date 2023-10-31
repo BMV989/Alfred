@@ -16,6 +16,7 @@ public class Search {
         this.chatId = chatId;
         try {
             File output = new File("./src/main/java/org/chatbot/app/Alfred/resources/hist.txt");
+            output.createNewFile();
             FileWriter writer = new FileWriter(output, true);
             writer.write(String.format("%s:%s\n", this.chatId, text));
             writer.flush();
