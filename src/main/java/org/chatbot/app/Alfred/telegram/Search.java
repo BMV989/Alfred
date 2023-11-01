@@ -15,7 +15,9 @@ public class Search {
         this.text = text;
         this.chatId = chatId;
         try {
+            File resources = new File("./src/main/java/resources");
             File output = new File("./src/main/java/resources/hist.txt");
+            resources.mkdir();
             output.createNewFile();
             FileWriter writer = new FileWriter(output, true);
             writer.write(String.format("%s:%s\n", this.chatId, text));

@@ -8,7 +8,7 @@
 
 /target/
 build.sh
-# ./src/main/java/resources/
+./src/main/java/resources/
 
 # intellij files
 /.idea/
