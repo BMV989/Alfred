@@ -9,6 +9,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class TelegramBot extends TelegramLongPollingBot {
     private Update update;
     private SendMessage msg;
+    private boolean test = false;
+    public TelegramBot() {}
+    public TelegramBot(boolean test) {
+        this.test = test;
+    }
     @Override
     public void onUpdateReceived(Update update) {
         this.update = update;
@@ -20,12 +25,13 @@ public class TelegramBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText();
             System.out.println(message);
-            TelegramCommandHandler handler = new TelegramCommandHandler(update.getMessage().getChatId(), message, update.getMessage().getChat().getUserName());
+            TelegramCommandHandler handler = new TelegramCommandHandler(update
+                .getMessage().getChatId(), message, update.getMessage().getChat().getUserName());
             handler.handleCommand();
         }
     }
 
-    protected SendMessage setMessage(Long chatId, String message){
+    protected SendMessage buildSendMessage(Long chatId, String message){
         return SendMessage
                 .builder()
                 .chatId(chatId)
@@ -35,9 +41,9 @@ public class TelegramBot extends TelegramLongPollingBot {
     public SendMessage getMessage(){
         return msg;
     }
-    public void sendMsg(Long chatId, String message, boolean test) {
+    public void sendMsg(Long chatId, String message) {
         try {
-            msg = setMessage(chatId, message);
+            msg = buildSendMessage(chatId, message);
             if (!test){
                 execute(msg);
             }

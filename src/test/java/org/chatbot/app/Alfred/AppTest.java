@@ -1,30 +1,27 @@
 package org.chatbot.app.Alfred;
 
-import org.chatbot.app.Alfred.telegram.TelegramBot;
-import org.chatbot.app.Alfred.telegram.TelegramCommandHandler;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.telegram.telegrambots.meta.api.objects.Update;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.chatbot.app.Alfred.telegram.TelegramCommandHandler;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class AppTest {
 
-    Long id = 249088829L;
-    String user = "@AmazingType";
+    private final Long id = 249088829L;
+    private  final String user = "@AmazingType";
 
     @ParameterizedTest
     @ValueSource(strings = {"/start","/info","/help","/search Bebra","/history", "dsdasda"})
     void testBaseCommands(String command){
-        TelegramCommandHandler handler = new TelegramCommandHandler(id, command, user);
-        handler.isTest(true);
+        TelegramCommandHandler handler = new TelegramCommandHandler(id,
+            command, user, true);
         handler.handleCommand();
         assertEquals(handler.getMessage().getChatId(), id.toString());
         assertNotNull(handler.getMessage().getText());
@@ -33,24 +30,27 @@ public class AppTest {
     @Test
     void testCommandSearch(){
         String name = "oxxxymiron";
-        TelegramCommandHandler handler = new TelegramCommandHandler(id, "/search " + name, user);
-        handler.isTest(true);
+        TelegramCommandHandler handler = new TelegramCommandHandler(id,
+            "/search " + name, user, true);
         handler.handleCommand();
         assertEquals(handler.getMessage().getText(), "Nothing was found for your query :(");
     }
 
     @Test
     void testCommandHistory(){
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         try{
             File hist = new File("./src/main/java/resources/hist.txt");
+            File resources = new File("./src/main/java/resources");
+            resources.mkdir();
+            hist.createNewFile();
             FileReader fr = new FileReader(hist);
             BufferedReader reader = new BufferedReader(fr);
             String line = reader.readLine();
             while (line != null){
-                String fileId = line.split(":")[0].toString();
+                String fileId = line.split(":")[0];
                 if (fileId.equals(id.toString())){
-                    ans+= line.split(":")[1].toString() + "\n";
+                    ans.append(line.split(":")[1]).append("\n");
                 }
                 line = reader.readLine();
             }
@@ -61,9 +61,9 @@ public class AppTest {
             System.out.println(ex.getMessage());
         }
 
-        TelegramCommandHandler handler = new TelegramCommandHandler(id, "/history", user);
-        handler.isTest(true);
+        TelegramCommandHandler handler = new TelegramCommandHandler(id,
+            "/history", user, true);
         handler.handleCommand();
-        assertEquals(handler.getMessage().getText(), ans);
+        assertEquals(handler.getMessage().getText(), ans.toString());
     }
 }
