@@ -7,19 +7,17 @@ import java.io.IOException;
 
 public class History {
     private String ans = "";
-    private final TelegramBot tg = new TelegramBot();
+
     public History(Long chatId){
         try{
             File hist = new File("./src/main/java/resources/hist.txt");
             FileReader fr = new FileReader(hist);
             BufferedReader reader = new BufferedReader(fr);
             String line = reader.readLine();
-            //System.out.println(line);
             while (line != null){
-                String id = line.split(":")[0].toString();
-                //System.out.println(line);
+                String id = line.split(":")[0];
                 if (id.equals(chatId.toString())){
-                    ans+= line.split(":")[1].toString() + "\n";
+                    ans+= line.split(":")[1] + "\n";
                 }
                 line = reader.readLine();
             }

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+// TODO: add @AfterAll to clear up the hist.txt mess
 public class AppTest {
 
     private final Long id = 249088829L;
