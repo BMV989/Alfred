@@ -1,5 +1,6 @@
 package org.chatbot.app.Alfred;
 
+import static org.chatbot.app.Alfred.telegram.History.HISTORY_PATH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -41,8 +42,8 @@ public class AppTest {
     void testCommandHistory(){
         StringBuilder ans = new StringBuilder();
         try{
-            File hist = new File("./src/main/java/resources/hist.txt");
-            File resources = new File("./src/main/java/resources");
+            File hist = new File(HISTORY_PATH);
+            File resources = new File(hist.getParent());
             resources.mkdir();
             hist.createNewFile();
             FileReader fr = new FileReader(hist);

@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class TelegramBot extends TelegramLongPollingBot implements MessageSender {
     @Override
     public void onUpdateReceived(Update update) {
-        System.out.println("update receive");
+        System.out.println("received update:");
         System.out.println(update);
         handleUpdate(update);
     }
