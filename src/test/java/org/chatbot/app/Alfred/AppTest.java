@@ -12,29 +12,29 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-// TODO: add @AfterAll to clear up the hist.txt mess
 public class AppTest {
 
     private final Long id = 249088829L;
     private  final String user = "@AmazingType";
+    private final TestMessageSender sender = new TestMessageSender();
 
     @ParameterizedTest
     @ValueSource(strings = {"/start","/info","/help","/search Bebra","/history", "dsdasda"})
     void testBaseCommands(String command){
         TelegramCommandHandler handler = new TelegramCommandHandler(id,
-            command, user, true);
+            command, user, sender);
         handler.handleCommand();
-        assertEquals(handler.getMessage().getChatId(), id.toString());
-        assertNotNull(handler.getMessage().getText());
+        assertEquals(sender.getMsg().getChatId(), id.toString());
+        assertNotNull(sender.getMsg().getText());
     }
 
     @Test
     void testCommandSearch(){
         String name = "oxxxymiron";
         TelegramCommandHandler handler = new TelegramCommandHandler(id,
-            "/search " + name, user, true);
+            "/search " + name, user, sender);
         handler.handleCommand();
-        assertEquals(handler.getMessage().getText(), "Nothing was found for your query :(");
+        assertEquals(sender.getMsg().getText(), "Nothing was found for your query :(");
     }
 
     @Test
@@ -63,8 +63,8 @@ public class AppTest {
         }
 
         TelegramCommandHandler handler = new TelegramCommandHandler(id,
-            "/history", user, true);
+            "/history", user, sender);
         handler.handleCommand();
-        assertEquals(handler.getMessage().getText(), ans.toString());
+        assertEquals(sender.getMsg().getText(), ans.toString());
     }
 }

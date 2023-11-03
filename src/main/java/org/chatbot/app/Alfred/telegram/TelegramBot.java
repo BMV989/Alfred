@@ -6,22 +6,14 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
-public class TelegramBot extends TelegramLongPollingBot {
-    private Update update;
-    private SendMessage msg;
-    private boolean test = false;
-    public TelegramBot() {}
-    public TelegramBot(boolean test) {
-        this.test = test;
-    }
+public class TelegramBot extends TelegramLongPollingBot implements MessageSender {
     @Override
     public void onUpdateReceived(Update update) {
-        this.update = update;
         System.out.println("update receive");
         System.out.println(update);
-        handleUpdate();
+        handleUpdate(update);
     }
-    private void handleUpdate() {
+    private void handleUpdate(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText();
             System.out.println(message);
@@ -38,19 +30,13 @@ public class TelegramBot extends TelegramLongPollingBot {
                 .text(message)
                 .build();
     }
-    public SendMessage getMessage(){
-        return msg;
-    }
+    @Override
     public void sendMsg(Long chatId, String message) {
         try {
-            msg = buildSendMessage(chatId, message);
-            if (!test){
-                execute(msg);
-            }
+            execute(buildSendMessage(chatId, message));
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-
     }
     // Возможно имя бота сделать переменной окружения?
     @Override
