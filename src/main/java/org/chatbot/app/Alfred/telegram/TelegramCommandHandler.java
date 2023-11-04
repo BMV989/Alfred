@@ -1,6 +1,5 @@
 package org.chatbot.app.Alfred.telegram;
 
-import org.chatbot.app.Alfred.telegram.controller.TelegramBot;
 
 public class TelegramCommandHandler {
     private final MessageSender messageSender;
@@ -14,7 +13,7 @@ public class TelegramCommandHandler {
         this.chatId = chatId;
         this.command = command;
         this.user = user;
-        this.messageSender = new TelegramBot();
+        this.messageSender = new TelegramMessageSender();
     }
     public TelegramCommandHandler(Long chatId, String command, String user,
         MessageSender messageSender) {
