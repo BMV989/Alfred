@@ -13,7 +13,7 @@ public class TelegramCommandHandler {
         this.chatId = chatId;
         this.command = command;
         this.user = user;
-        this.messageSender = new TelegramBot();
+        this.messageSender = new TelegramMessageSender();
     }
     public TelegramCommandHandler(Long chatId, String command, String user,
         MessageSender messageSender) {
@@ -26,7 +26,6 @@ public class TelegramCommandHandler {
     public void handleCommand() {
         String key = command.split(" ")[0];
         if (command.split(" ").length > 1) {
-            // проблема с тем что берем только 1 индекс (больше одно слова не читает)
             this.text = command.replace(key+" ", "");
         }
         switch (key) {
