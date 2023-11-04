@@ -1,9 +1,10 @@
 package org.chatbot.app.Alfred;
 
-import org.chatbot.app.Alfred.telegram.TelegramBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+import org.chatbot.app.Alfred.telegram.controller.TelegramBot;
+
 
 public class App {
 

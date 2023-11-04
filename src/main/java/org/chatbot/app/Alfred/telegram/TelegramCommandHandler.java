@@ -1,5 +1,7 @@
 package org.chatbot.app.Alfred.telegram;
 
+import org.chatbot.app.Alfred.telegram.controller.TelegramBot;
+
 public class TelegramCommandHandler {
     private final MessageSender messageSender;
     private String text;
@@ -25,7 +27,6 @@ public class TelegramCommandHandler {
     public void handleCommand() {
         String key = command.split(" ")[0];
         if (command.split(" ").length > 1) {
-            // проблема с тем что берем только 1 индекс (больше одно слова не читает)
             this.text = command.replace(key+" ", "");
         }
         switch (key) {

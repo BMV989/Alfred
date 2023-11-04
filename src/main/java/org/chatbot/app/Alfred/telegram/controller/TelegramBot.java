@@ -1,5 +1,6 @@
-package org.chatbot.app.Alfred.telegram;
+package org.chatbot.app.Alfred.telegram.controller;
 
+import org.chatbot.app.Alfred.telegram.MessageSender;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -9,17 +10,12 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class TelegramBot extends TelegramLongPollingBot implements MessageSender {
     @Override
     public void onUpdateReceived(Update update) {
-        System.out.println("received update:");
-        System.out.println(update);
-        handleUpdate(update);
-    }
-    private void handleUpdate(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
-            String message = update.getMessage().getText();
-            System.out.println(message);
-            TelegramCommandHandler handler = new TelegramCommandHandler(update
-                .getMessage().getChatId(), message, update.getMessage().getChat().getUserName());
-            handler.handleCommand();
+            System.out.println("received update:");
+            System.out.println(update);
+            new Session(update.getMessage().getChatId(),
+                    update.getMessage().getText(),
+                    update.getMessage().getChat().getUserName());
         }
     }
 
@@ -38,8 +34,7 @@ public class TelegramBot extends TelegramLongPollingBot implements MessageSender
             e.printStackTrace();
         }
     }
-    // Возможно имя бота сделать переменной окружения?
-    @Override
+   @Override
     public String getBotUsername() {
         return "PersonalMusicalButlerBot";
     }
