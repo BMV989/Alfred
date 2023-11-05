@@ -4,7 +4,6 @@ import static org.chatbot.app.Alfred.telegram.commands.HistoryCommand.HISTORY_PA
 
 import java.io.File;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,17 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SqliteDB {
-    private final String url = String.format("jdbc:sqlite:%s", HISTORY_PATH);
+    private final String url;
+    public SqliteDB(String path) {
+        this.url = String.format("jdbc:sqlite:%s", path);
+    }
     public SqliteDB() {
-        try (Connection conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        this.url = String.format("jdbc:sqlite:%s", HISTORY_PATH);
     }
     public void up() {
        try {
@@ -64,7 +58,7 @@ public class SqliteDB {
         try {
             Connection conn = DriverManager.getConnection(url);
             PreparedStatement preparedStatement = conn.prepareStatement("""
-                select query from search_history where chat_id = ? order by rowid desc limit 5""");
+                select query from search_history where chat_id = ? order by rowid limit 5""");
             preparedStatement.setLong(1, chatId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

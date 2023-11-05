@@ -1,7 +1,5 @@
 package org.chatbot.app.Alfred;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import org.chatbot.app.Alfred.database.SqliteDB;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -12,6 +10,8 @@ import org.chatbot.app.Alfred.telegram.TelegramBot;
 public class App {
 
     public static void main(String[] args) {
+        SqliteDB db = new SqliteDB();
+        db.up();
         try {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             telegramBotsApi.registerBot(new TelegramBot());
