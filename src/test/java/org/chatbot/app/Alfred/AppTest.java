@@ -1,6 +1,6 @@
 package org.chatbot.app.Alfred;
 
-import static org.chatbot.app.Alfred.telegram.History.HISTORY_PATH;
+import static org.chatbot.app.Alfred.telegram.commands.HistoryCommand.HISTORY_PATH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

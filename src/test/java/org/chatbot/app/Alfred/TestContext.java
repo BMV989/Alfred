@@ -1,6 +1,6 @@
 package org.chatbot.app.Alfred;
 
-import org.chatbot.app.Alfred.telegram.Context;
+import org.chatbot.app.Alfred.telegram.types.Context;
 
 public class TestContext implements Context {
     private String text;

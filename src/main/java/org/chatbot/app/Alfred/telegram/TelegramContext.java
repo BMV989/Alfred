@@ -1,6 +1,6 @@
 package org.chatbot.app.Alfred.telegram;
 
-import org.telegram.telegrambots.meta.api.objects.Message;
+import org.chatbot.app.Alfred.telegram.types.Context;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class TelegramContext implements Context {

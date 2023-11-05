@@ -1,6 +1,6 @@
 package org.chatbot.app.Alfred;
 
-import org.chatbot.app.Alfred.telegram.MessageSender;
+import org.chatbot.app.Alfred.telegram.types.MessageSender;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 public class TestMessageSender implements MessageSender {
