@@ -9,7 +9,7 @@ import org.chatbot.app.Alfred.telegram.types.Context;
 import org.chatbot.app.Alfred.telegram.types.MessageSender;
 
 public class HistoryCommand implements Command {
-    public static final String HISTORY_PATH = "./src/main/java/resources/hist.txt";
+    public static final String HISTORY_PATH = "src/main/resources/history.db";
     // TODO: refactor history class
     static class History {
         private String ans = "";
