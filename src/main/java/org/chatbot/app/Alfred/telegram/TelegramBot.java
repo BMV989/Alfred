@@ -1,6 +1,7 @@
-package org.chatbot.app.Alfred.telegram.controller;
+package org.chatbot.app.Alfred.telegram;
 
 import org.chatbot.app.Alfred.telegram.MessageSender;
+import org.chatbot.app.Alfred.telegram.controller.Session;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -13,9 +14,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             System.out.println("received update:");
             System.out.println(update);
-            new Session(update.getMessage().getChatId(),
-                    update.getMessage().getText(),
-                    update.getMessage().getChat().getUserName());
+            new Session(new TelegramContext(update));
         }
     }
 

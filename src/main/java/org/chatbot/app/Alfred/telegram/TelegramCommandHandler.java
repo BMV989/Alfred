@@ -1,29 +1,27 @@
 package org.chatbot.app.Alfred.telegram;
 
 
+import org.telegram.telegrambots.meta.api.objects.Update;
+
 public class TelegramCommandHandler {
     private final MessageSender messageSender;
+    private final Context ctx;
     private String text;
 
-    private final Long chatId;
-    private final String command;
-    private final String user;
-
-    public TelegramCommandHandler(Long chatId, String command, String user) {
-        this.chatId = chatId;
-        this.command = command;
-        this.user = user;
+    public TelegramCommandHandler(Context ctx) {
         this.messageSender = new TelegramMessageSender();
+        this.ctx = ctx;
     }
-    public TelegramCommandHandler(Long chatId, String command, String user,
+    public TelegramCommandHandler(Context ctx,
         MessageSender messageSender) {
-        this.chatId = chatId;
-        this.command = command;
-        this.user = user;
         this.messageSender = messageSender;
+        this.ctx = ctx;
     }
 
     public void handleCommand() {
+        String command = ctx.getText();
+        Long chatId = ctx.getChatId();
+        String user = ctx.getUserName();
         String key = command.split(" ")[0];
         if (command.split(" ").length > 1) {
             this.text = command.replace(key+" ", "");

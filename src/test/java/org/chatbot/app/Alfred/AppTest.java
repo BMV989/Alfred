@@ -18,12 +18,13 @@ public class AppTest {
     private final Long id = 249088829L;
     private  final String user = "@AmazingType";
     private final TestMessageSender sender = new TestMessageSender();
+    private  final TestContext ctx = new TestContext(id, user);
 
     @ParameterizedTest
     @ValueSource(strings = {"/start","/info","/help","/search Bebra","/history", "dsdasda"})
     void testBaseCommands(String command){
-        TelegramCommandHandler handler = new TelegramCommandHandler(id,
-            command, user, sender);
+        ctx.setText(command);
+        TelegramCommandHandler handler = new TelegramCommandHandler(ctx, sender);
         handler.handleCommand();
         assertEquals(sender.getMsg().getChatId(), id.toString());
         assertNotNull(sender.getMsg().getText());
@@ -31,9 +32,8 @@ public class AppTest {
 
     @Test
     void testCommandSearch(){
-        String name = "oxxxymiron";
-        TelegramCommandHandler handler = new TelegramCommandHandler(id,
-            "/search " + name, user, sender);
+        ctx.setText("/search");
+        TelegramCommandHandler handler = new TelegramCommandHandler(ctx, sender);
         handler.handleCommand();
         assertEquals(sender.getMsg().getText(), "Nothing was found for your query :(");
     }
@@ -62,9 +62,8 @@ public class AppTest {
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
-
-        TelegramCommandHandler handler = new TelegramCommandHandler(id,
-            "/history", user, sender);
+        ctx.setText("/history");
+        TelegramCommandHandler handler = new TelegramCommandHandler(ctx, sender);
         handler.handleCommand();
         assertEquals(sender.getMsg().getText(), ans.toString());
     }

@@ -3,7 +3,7 @@ package org.chatbot.app.Alfred;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-import org.chatbot.app.Alfred.telegram.controller.TelegramBot;
+import org.chatbot.app.Alfred.telegram.TelegramBot;
 
 
 public class App {
