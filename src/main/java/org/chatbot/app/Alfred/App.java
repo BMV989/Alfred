@@ -11,7 +11,6 @@ public class App {
 
     public static void main(String[] args) {
         SqliteDB db = new SqliteDB();
-        db.up();
         try {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             telegramBotsApi.registerBot(new TelegramBot());
