@@ -8,7 +8,7 @@ import org.apache.hc.client5.http.fluent.Content;
 import org.apache.hc.client5.http.fluent.Request;
 
 public class Youtube {
-     final String youtubeApiKey = "AIzaSyB2bTCMJAwgbtFEbtjzskJ4rv-pFMdSNy4";
+     final String youtubeApiKey = System.getenv("YT_TOKEN");
      String header = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=";
      Integer maxResults = 5;
      String q = "";

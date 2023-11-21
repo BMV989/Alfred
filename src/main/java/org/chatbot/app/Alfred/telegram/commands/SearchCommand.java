@@ -31,7 +31,6 @@ public class SearchCommand implements Command {
         }
         try{
             Youtube resp = new Youtube(text);
-            //resp.getResponse();
             this.otv = resp.findResult();
             System.out.println(text);
             System.out.println(this.otv.items[3].id.videoId);
@@ -44,7 +43,6 @@ public class SearchCommand implements Command {
         }
         db.insert(ctx.getChatId(), text);
 
-        //sender.sendMsg(ctx.getChatId(),"Sry, nothing was found for now :(");
         if (otv.items.length == 0){
             sender.sendMsg(ctx.getChatId(),"Sry, nothing was found for now :(");
         }
