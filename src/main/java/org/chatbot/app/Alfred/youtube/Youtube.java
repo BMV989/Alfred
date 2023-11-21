@@ -27,7 +27,7 @@ public class Youtube {
           return rawResponse.asString();
      }
      public YotubeDataClass findResult(){
-          return new Gson().fromJson(rawResponse.asString(), YotubeDataClass.class);
+         return new Gson().fromJson(rawResponse.asString(), YotubeDataClass.class);
      }
 
 }

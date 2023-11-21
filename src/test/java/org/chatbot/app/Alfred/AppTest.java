@@ -21,12 +21,30 @@ public class AppTest {
     private  final TestContext ctx = new TestContext(id, user);
 
     @ParameterizedTest
-    @ValueSource(strings = {"/start","/info","/help","/search Bebra","/history", "dsdasda"})
+    @ValueSource(strings = {"/start","/info","/help","dsdasda"})
     void testBaseCommands(String command){
         ctx.setText(command);
         CommandHandlerTest handler = new CommandHandlerTest(ctx, sender);
         handler.handleCommand();
         assertEquals(sender.getMsg().getChatId(), id.toString());
         assertNotNull(sender.getMsg().getText());
+    }
+    @Test
+    void testSearchCommand(){
+        ctx.setText("/search oxxxymiron");
+        CommandHandlerTest handler = new CommandHandlerTest(ctx, sender);
+        handler.handleCommand();
+        assertEquals(sender.getMsg().getText(),"Oxxxymiron feat. 1.Kla$ — 1.Kla$ Pt. 2 (2023)\n" +
+                "oxxxymironofficial\n" +
+                "https://www.youtube.com/watch?v=ZtCspCOOwRE\n" +
+                "2023-08-11T12:55:36Z");
+    }
+    @Test
+    void testHistoryCommand(){
+        ctx.setText("/history");
+        CommandHandlerTest handler = new CommandHandlerTest(ctx, sender);
+        handler.handleCommand();
+        assertEquals(sender.getMsg().getText(),"Your search query history:\n" +
+                "/search test /search Мэйби Бейби /search Слава КПСС /search Bebra /search oxxxymiron ");
     }
 }
