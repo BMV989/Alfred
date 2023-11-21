@@ -20,6 +20,7 @@ public class SqliteDB {
     public SqliteDB() {
         this.url = String.format("jdbc:sqlite:%s", HISTORY_PATH);
     }
+    // мусор
     public void up() {
        try {
            Connection conn = DriverManager.getConnection(url);
@@ -41,6 +42,7 @@ public class SqliteDB {
             System.err.println("db hasn't been deleted");
         }
     }
+    // мусор
     public void insert(Long chatId, String query) {
         try {
             Connection conn = DriverManager.getConnection(url);
