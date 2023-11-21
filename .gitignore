@@ -9,6 +9,7 @@
 /target/
 build.sh
 ./src/main/java/resources/history.db
+./src/main/resources/history.db
 
 # intellij files
 /.idea/

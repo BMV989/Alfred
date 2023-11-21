@@ -60,7 +60,7 @@ public class SqliteDB {
         try {
             Connection conn = DriverManager.getConnection(url);
             PreparedStatement preparedStatement = conn.prepareStatement("""
-                select query from search_history where chat_id = ? order by rowid limit 5""");
+                select query from search_history where chat_id = ? order by rowid desc limit 5""");
             preparedStatement.setLong(1, chatId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
