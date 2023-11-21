@@ -1,0 +1,182 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "JojqFx1VDspnP-marxv3mWX31_A",
+  "nextPageToken": "CAUQAA",
+  "regionCode": "RU",
+  "pageInfo": {
+    "totalResults": 877256,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "XwxZTtf18C7EPLBfrmeLhaivK7k",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "kkXXrRxmAyw"
+      },
+      "snippet": {
+        "publishedAt": "2023-08-11T12:55:36Z",
+        "channelId": "UCCzp3DWpSc0s5wXYDghjM9A",
+        "title": "OXXXYMIRON — Лига Опасного Интернета (2023)",
+        "description": "БИЛЕТЫ НА МИРОВОЙ ТУР 2023-2024: HTTPS://OXXXYTOUR.COM Трек на всех стримингах: https://band.link/theleague ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/kkXXrRxmAyw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/kkXXrRxmAyw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/kkXXrRxmAyw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "oxxxymironofficial",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-08-11T12:55:36Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "bZJFJiZqZqm1leuoIPkhf6nOkOM",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "75CkkZHIT14"
+      },
+      "snippet": {
+        "publishedAt": "2023-11-01T18:19:35Z",
+        "channelId": "UCCzp3DWpSc0s5wXYDghjM9A",
+        "title": "Oxxxymiron — Лондон (World Tour 2023)",
+        "description": "NEXT: Торонто (3 ноября), Кейптаун (6 янв), Дубай (11 янв), Паттайя (15 янв), Бали (18 янв), Мельбурн (21 янв), Сидней (23 ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/75CkkZHIT14/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/75CkkZHIT14/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/75CkkZHIT14/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "oxxxymironofficial",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-11-01T18:19:35Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "zqz95t-9CpruQi1FXrdEW5230-Y",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "scqHvAIZkhw"
+      },
+      "snippet": {
+        "publishedAt": "2023-09-01T13:32:01Z",
+        "channelId": "UCCzp3DWpSc0s5wXYDghjM9A",
+        "title": "OXXXYMIRON — 1.Kla$ (2023)",
+        "description": "Трек в стриминге: https://band.link/1klas OXXXYMIRON WORLD TOUR TICKETS: HTTPS://OXXXYTOUR.COM Director / DoP ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/scqHvAIZkhw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/scqHvAIZkhw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/scqHvAIZkhw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "oxxxymironofficial",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-09-01T13:32:01Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "1V1AdMSnKfLgVW_B6Bu2QsfPLh0",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "ceG91Snh0UU"
+      },
+      "snippet": {
+        "publishedAt": "2023-09-26T15:59:21Z",
+        "channelId": "UCCzp3DWpSc0s5wXYDghjM9A",
+        "title": "Oxxxymiron feat. Брутто (Каспийский Груз) — Прекрасное Далёко (2023)",
+        "description": "Концерты Oxxxymiron в США через неделю: https://oxxxytour.com Слушать «Прекрасное Далёко» feat. Брутто (Каспийский ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/ceG91Snh0UU/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/ceG91Snh0UU/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/ceG91Snh0UU/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "oxxxymironofficial",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-09-26T15:59:21Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "zqK80kEpLRxHXFm0uPJZ5uVCRsE",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "ZtCspCOOwRE"
+      },
+      "snippet": {
+        "publishedAt": "2023-09-15T17:24:02Z",
+        "channelId": "UCCzp3DWpSc0s5wXYDghjM9A",
+        "title": "Oxxxymiron feat. 1.Kla$ — 1.Kla$ Pt. 2 (2023)",
+        "description": "Трек в стриминге: https://band.link/1klass2 OXXXYMIRON WORLD TOUR TICKETS: HTTPS://OXXXYTOUR.COM Track produced ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/ZtCspCOOwRE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/ZtCspCOOwRE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/ZtCspCOOwRE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "oxxxymironofficial",
+        "liveBroadcastContent": "none",
+        "publishTime": "2023-09-15T17:24:02Z"
+      }
+    }
+  ]
+}
