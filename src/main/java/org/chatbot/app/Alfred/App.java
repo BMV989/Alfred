@@ -10,7 +10,7 @@ import org.chatbot.app.Alfred.telegram.TelegramBot;
 public class App {
 
     public static void main(String[] args) {
-        new SqliteDB();
+        SqliteDB db = new SqliteDB();
         try {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             telegramBotsApi.registerBot(new TelegramBot());
