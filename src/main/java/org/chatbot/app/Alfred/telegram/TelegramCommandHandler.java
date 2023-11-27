@@ -4,6 +4,7 @@ package org.chatbot.app.Alfred.telegram;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.chatbot.app.Alfred.database.SqliteDB;
 import org.chatbot.app.Alfred.telegram.commands.HelpCommand;
 import org.chatbot.app.Alfred.telegram.commands.HistoryCommand;
 import org.chatbot.app.Alfred.telegram.commands.InfoCommand;
@@ -11,10 +12,9 @@ import org.chatbot.app.Alfred.telegram.commands.SearchCommand;
 import org.chatbot.app.Alfred.telegram.commands.StartCommand;
 import org.chatbot.app.Alfred.telegram.types.Command;
 import org.chatbot.app.Alfred.telegram.types.Context;
-import org.chatbot.app.Alfred.telegram.types.Handler;
 import org.chatbot.app.Alfred.telegram.types.MessageSender;
 
-public class TelegramCommandHandler implements Handler {
+public class TelegramCommandHandler {
     private final MessageSender messageSender;
     private final List<Command> commandsList = new ArrayList<>() {{
         add(new StartCommand());
