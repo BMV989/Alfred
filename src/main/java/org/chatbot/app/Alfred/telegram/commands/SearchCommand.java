@@ -12,7 +12,7 @@ import org.chatbot.app.Alfred.youtube.Youtube;
 public class SearchCommand implements Command {
     private YoutubeDataClass otv;
     @Override
-    public void execute(MessageSender sender, Context ctx) {
+    public void execute(MessageSender sender, Context ctx) throws IOException {
         String header = "Search results:";
         String key = ctx.getText().split(" ")[0];
         String text =  ctx.getText().split(" ").length > 1 ? ctx.getText()
@@ -23,6 +23,7 @@ public class SearchCommand implements Command {
             return;
         }
         MusicService resp = ctx.getMS();
+        resp.setQuery(text);
         this.otv = resp.findResult();
         System.out.println(text);
         ctx.getDB().insert(ctx.getChatId(), text);

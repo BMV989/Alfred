@@ -25,6 +25,8 @@ public class TestYoutube implements MusicService {
         }
     }
     @Override
+    public void setQuery(String q){ }
+    @Override
     public YoutubeDataClass findResult(){ return new Gson().fromJson(this.content, YoutubeDataClass.class);
     }
 }

@@ -1,6 +1,7 @@
 package org.chatbot.app.Alfred.telegram;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +43,11 @@ public class TelegramCommandHandler {
     public void handleCommand() {
         String key = ctx.getText().split(" ")[0];
         if(commands.containsKey(key)) {
-            commands.get(key).execute(messageSender, ctx);
+            try {
+                commands.get(key).execute(messageSender, ctx);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             messageSender.sendMsg(ctx.getChatId(), "There's no such command!/help");
         }

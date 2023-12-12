@@ -24,13 +24,18 @@ public class Youtube implements MusicService {
          this.rawResponse = Request.get(this.query).execute().returnContent();
      }
      public Youtube() { }
-    public void setQuery(String q) throws  IOException {
+    @Override
+    public void setQuery(String q) {
         this.q = URLEncoder.encode(q);
         this.query = header + maxResults + "&q=" +
             this.q + "&type=video&videoCategoryId=10&key=" +
             youtubeApiKey;
         System.out.println(query);
-        this.rawResponse = Request.get(this.query).execute().returnContent();
+        try {
+            this.rawResponse = Request.get(this.query).execute().returnContent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
      public String getResponse(){
           System.out.println(rawResponse.asString());

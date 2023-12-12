@@ -3,6 +3,7 @@ package org.chatbot.app.Alfred.database;
 import static org.chatbot.app.Alfred.telegram.commands.HistoryCommand.HISTORY_PATH;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 public class SqliteDB {
     private final String url;
@@ -21,6 +23,8 @@ public class SqliteDB {
         this.url = String.format("jdbc:sqlite:%s", HISTORY_PATH);
     }
     public void up() {
+        String dir = new File(url.split(":")[2]).getParent();
+        (new File(dir)).mkdir();
        try {
            Connection conn = DriverManager.getConnection(url);
            Statement statement = conn.createStatement();
@@ -29,17 +33,19 @@ public class SqliteDB {
                chat_id int,
                query text not null
                );""");
+           statement.close();
+           conn.close();
        } catch (SQLException e) {
            e.printStackTrace();
        }
     }
     public void down() {
-        File db = new File(url);
-        if (db.delete()) {
-            System.out.printf("db: %s has been deleted%n", db.getName());
-        } else {
-            System.err.println("db hasn't been deleted");
-        }
+        File db = new File(url.split(":")[2]);
+            if (db.delete()) {
+                System.out.printf("db: %s has been deleted%n", db.getName());
+            } else {
+                System.err.println("db hasn't been deleted");
+            }
     }
     public void insert(Long chatId, String query) {
         try {
@@ -49,6 +55,8 @@ public class SqliteDB {
             preparedStatement.setLong(1, chatId);
             preparedStatement.setString(2, query);
             preparedStatement.executeUpdate();
+            preparedStatement.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,7 +72,8 @@ public class SqliteDB {
             while (resultSet.next()) {
                 ans.add(resultSet.getString("query"));
             }
-
+            preparedStatement.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
