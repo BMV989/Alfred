@@ -3,7 +3,6 @@ package org.chatbot.app.Alfred.database;
 import static org.chatbot.app.Alfred.telegram.commands.HistoryCommand.HISTORY_PATH;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,7 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 
 public class SqliteDB {
     private final String url;

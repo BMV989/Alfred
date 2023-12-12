@@ -7,7 +7,7 @@
 
     <groupId>org.chatbot.app</groupId>
     <artifactId>Alfred</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3.1</version>
 
     <name>Alfred</name>
 
