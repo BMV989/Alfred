@@ -1,5 +1,8 @@
 package org.chatbot.app.Alfred.youtube;
 
 public class YoutubeDataClass {
-    public Items[] items;
+    private Items[] items;
+    public Items[] getItems() {
+        return items;
+    }
 }

@@ -37,10 +37,6 @@ public class Youtube implements MusicService {
             e.printStackTrace();
         }
     }
-     public String getResponse(){
-          System.out.println(rawResponse.asString());
-          return rawResponse.asString();
-     }
      public YoutubeDataClass findResult(){
          return new Gson().fromJson(rawResponse.asString(), YoutubeDataClass.class);
      }

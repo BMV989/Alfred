@@ -1,7 +1,16 @@
 package org.chatbot.app.Alfred.youtube;
 
 public class Snippet {
-    public String title;
-    public String channelTitle;
-    public String publishTime;
+    private String title;
+    private String channelTitle;
+    private String publishTime;
+    public String getTitle() {
+        return title;
+    }
+    public String getChannelTitle() {
+        return channelTitle;
+    }
+    public String getPublishTime() {
+        return publishTime;
+    }
 }

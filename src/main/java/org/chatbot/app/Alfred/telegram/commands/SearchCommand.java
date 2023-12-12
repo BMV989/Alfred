@@ -1,16 +1,14 @@
 package org.chatbot.app.Alfred.telegram.commands;
 
 import java.io.IOException;
-
 import org.chatbot.app.Alfred.telegram.types.Command;
 import org.chatbot.app.Alfred.telegram.types.Context;
 import org.chatbot.app.Alfred.telegram.types.MessageSender;
 import org.chatbot.app.Alfred.telegram.types.MusicService;
-import org.chatbot.app.Alfred.youtube.YoutubeDataClass;
-import org.chatbot.app.Alfred.youtube.Youtube;
+import org.chatbot.app.Alfred.youtube.Items;
 
 public class SearchCommand implements Command {
-    private YoutubeDataClass otv;
+
     @Override
     public void execute(MessageSender sender, Context ctx) throws IOException {
         String header = "Search results:";
@@ -24,20 +22,19 @@ public class SearchCommand implements Command {
         }
         MusicService resp = ctx.getMS();
         resp.setQuery(text);
-        this.otv = resp.findResult();
-        System.out.println(text);
+        Items[] otv = resp.findResult().getItems();
         ctx.getDB().insert(ctx.getChatId(), text);
 
-        if (otv.items.length == 0){
+        if (otv.length == 0){
             sender.sendMsg(ctx.getChatId(),"Sry, nothing was found for now :(");
         }
         else{
             sender.sendMsg(ctx.getChatId(), header);
-            for (int i = 0; i < otv.items.length; i++){
-                sender.sendMsg(ctx.getChatId(), otv.items[i].snippet.title.replace("&quot;", "\"") +
-                        "\n" + otv.items[i].snippet.channelTitle.replace("&quot;", "\"") + "\n" +
-                        "https://www.youtube.com/watch?v=" + otv.items[i].id.videoId
-                + "\n" + otv.items[0].snippet.publishTime);
+            for (Items items : otv) {
+                sender.sendMsg(ctx.getChatId(), items.getSnippet().getTitle().replace("&quot;", "\"") +
+                    "\n" + items.getSnippet().getChannelTitle().replace("&quot;", "\"") + "\n" +
+                    "https://www.youtube.com/watch?v=" + items.getId().getVideoId()
+                    + "\n" + otv[0].getSnippet().getPublishTime());
             }
         }
     }
