@@ -30,6 +30,7 @@ public class SearchCommand implements Command {
         }
         else{
             sender.sendMsg(ctx.getChatId(), header);
+            ctx.setOtv(otv);
             for (Items items : otv) {
                 sender.sendMsg(ctx.getChatId(), items.getSnippet().getTitle().replace("&quot;", "\"") +
                     "\n" + items.getSnippet().getChannelTitle().replace("&quot;", "\"") + "\n" +

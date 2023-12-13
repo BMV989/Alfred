@@ -4,9 +4,16 @@ import org.chatbot.app.Alfred.telegram.TelegramCommandHandler;
 import org.chatbot.app.Alfred.telegram.TelegramContext;
 
 public class Session {
-    public Session(TelegramContext ctx){
+    private final TelegramCommandHandler handler;
+    public Session() {
+
+        this.handler = new TelegramCommandHandler();
+    }
+    public void handleCommand(TelegramContext ctx) {
         System.out.println(ctx.getText());
-        TelegramCommandHandler handler = new TelegramCommandHandler(ctx);
-        handler.handleCommand();
+        handler.handleCommand(ctx);
+    }
+    public void handleCallbackQuery(TelegramContext ctx) {
+        handler.handleCallbackQuery(ctx);
     }
 }

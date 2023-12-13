@@ -1,20 +1,33 @@
 package org.chatbot.app.Alfred;
 
-import java.io.IOException;
 import org.chatbot.app.Alfred.database.SqliteDB;
 import org.chatbot.app.Alfred.telegram.types.Context;
 import org.chatbot.app.Alfred.telegram.types.MusicService;
+import org.chatbot.app.Alfred.youtube.Items;
 
 public class TestContext implements Context {
     private String text;
     private  Long chatId;
+    private Items[] otv;
     private String userName;
+    private String callbackQueryData;
+    private long callbackQueryChatId;
+    private long callbackQueryMessageId;
     private final MusicService ms = new TestYoutube();
     public static final SqliteDB db = new SqliteDB("./src/test/resources/history.db");
     protected TestContext(String text, Long chatId, String userName) {
         this.chatId = chatId;
         this.text = text;
         this.userName = userName;
+    }
+    protected TestContext(String text, Long chatId, String userName, String callbackQueryData,
+        long callbackQueryChatId, long callbackQueryMessageId) {
+        this.chatId = chatId;
+        this.text = text;
+        this.userName = userName;
+        this.callbackQueryData = callbackQueryData;
+        this.callbackQueryChatId = callbackQueryChatId;
+        this.callbackQueryMessageId = callbackQueryMessageId;
     }
     protected TestContext(Long chatId, String userName) {
         this.chatId = chatId;
@@ -52,7 +65,37 @@ public class TestContext implements Context {
         return ms;
     }
 
+    @Override
+    public String getCallbackQueryData() {
+        return callbackQueryData;
+    }
+    public void setCallbackQueryData(String data) {
+        this.callbackQueryData = data;
+    }
+    @Override
+    public long getCallbackQueryChatId() {
+        return this.callbackQueryChatId;
+    }
+    public void getCallbackQueryChatId(long id) {
+        this.callbackQueryChatId = id;
+    }
+    @Override
+    public long getCallbackQueryMessageId() {
+        return this.callbackQueryMessageId;
+    }
+
+    public void setCallbackQueryMessageId() {
+        this.callbackQueryMessageId = callbackQueryMessageId;
+    }
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    @Override
+    public void setOtv(Items[] items) {
+        this.otv = items;
+    }
+    @Override
+    public Items[] getOtv() {
+        return  this.otv;
     }
 }

@@ -30,8 +30,8 @@ public class AppTest {
     @ValueSource(strings = {"/start","/info","/help","dsdasda"})
     void testBaseCommands(String command){
         ctx.setText(command);
-        TelegramCommandHandler handler = new TelegramCommandHandler(ctx, sender);
-        handler.handleCommand();
+        TelegramCommandHandler handler = new TelegramCommandHandler(sender);
+        handler.handleCommand(ctx);
         assertEquals(sender.getMsg().getChatId(), id.toString());
         assertNotNull(sender.getMsg().getText());
     }
@@ -51,8 +51,8 @@ public class AppTest {
     @Test
     void testSearchCommand(){
         ctx.setText("/search oxxxymiron");
-        TelegramCommandHandler handler = new TelegramCommandHandler(ctx, sender);
-        handler.handleCommand();
+        TelegramCommandHandler handler = new TelegramCommandHandler(sender);
+        handler.handleCommand(ctx);
         assertEquals("""
             Oxxxymiron feat. 1.Kla$ — 1.Kla$ Pt. 2 (2023)
             oxxxymironofficial
@@ -62,8 +62,8 @@ public class AppTest {
     @Test
     void testHistoryCommand(){
         ctx.setText("/history");
-        TelegramCommandHandler handler = new TelegramCommandHandler(ctx, sender);
-        handler.handleCommand();
+        TelegramCommandHandler handler = new TelegramCommandHandler(sender);
+        handler.handleCommand(ctx);
         List<String> fiveQueries = db.getLastFiveQueries(id);
         assertTrue(fiveQueries.equals(expected));
         assertEquals("Your search query history:", sender.getMsg().getText());
