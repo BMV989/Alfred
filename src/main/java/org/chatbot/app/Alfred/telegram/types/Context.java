@@ -10,8 +10,9 @@ public interface Context {
     SqliteDB getDB();
     MusicService getMS();
     String getCallbackQueryData();
-    long getCallbackQueryChatId();
-    long getCallbackQueryMessageId();
+    Long getCallbackQueryChatId();
+    Integer getCallbackQueryMessageId();
     void setOtv(Items[] items);
     Items[] getOtv();
+    Integer getMessageId();
 }

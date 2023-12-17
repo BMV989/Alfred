@@ -47,13 +47,13 @@ public class TelegramContext implements Context {
     }
 
     @Override
-    public long getCallbackQueryChatId() {
+    public Long getCallbackQueryChatId() {
         return update.getCallbackQuery().getMessage().getChatId();
     }
 
     @Override
-    public long getCallbackQueryMessageId() {
-        return update.getMessage().getMessageId();
+    public Integer getCallbackQueryMessageId() {
+        return update.getCallbackQuery().getMessage().getMessageId();
     }
 
     @Override
@@ -64,5 +64,10 @@ public class TelegramContext implements Context {
     @Override
     public Items[] getOtv() {
         return ytItems;
+    }
+
+    @Override
+    public Integer getMessageId() {
+        return update.getMessage().getMessageId();
     }
 }

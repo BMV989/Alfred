@@ -10,16 +10,15 @@ public class TelegramBot extends TelegramLongPollingBot {
     private final HashMap<Long, Session> sessions = new HashMap<>();
     @Override
     public void onUpdateReceived(Update update) {
-        if (!sessions.containsKey(update.getMessage().getChatId())) {
+        if (update.hasMessage() && !sessions.containsKey(update.getMessage().getChatId())) {
             sessions.put(update.getMessage().getChatId(), new Session());
         }
         if (update.hasMessage() && update.getMessage().hasText()) {
             System.out.println("received update:");
-            System.out.println(update);
             sessions.get(update.getMessage().getChatId())
                 .handleCommand(new TelegramContext(update));
         } else if (update.hasCallbackQuery()) {
-            sessions.get(update.getMessage().getChatId())
+            sessions.get(update.getCallbackQuery().getMessage().getChatId())
                 .handleCallbackQuery(new TelegramContext(update));
         }
     }

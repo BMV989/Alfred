@@ -11,8 +11,8 @@ public class TestContext implements Context {
     private Items[] otv;
     private String userName;
     private String callbackQueryData;
-    private long callbackQueryChatId;
-    private long callbackQueryMessageId;
+    private Long callbackQueryChatId;
+    private Integer callbackQueryMessageId;
     private final MusicService ms = new TestYoutube();
     public static final SqliteDB db = new SqliteDB("./src/test/resources/history.db");
     protected TestContext(String text, Long chatId, String userName) {
@@ -21,7 +21,7 @@ public class TestContext implements Context {
         this.userName = userName;
     }
     protected TestContext(String text, Long chatId, String userName, String callbackQueryData,
-        long callbackQueryChatId, long callbackQueryMessageId) {
+        Long callbackQueryChatId, Integer callbackQueryMessageId) {
         this.chatId = chatId;
         this.text = text;
         this.userName = userName;
@@ -73,18 +73,18 @@ public class TestContext implements Context {
         this.callbackQueryData = data;
     }
     @Override
-    public long getCallbackQueryChatId() {
+    public Long getCallbackQueryChatId() {
         return this.callbackQueryChatId;
     }
     public void getCallbackQueryChatId(long id) {
         this.callbackQueryChatId = id;
     }
     @Override
-    public long getCallbackQueryMessageId() {
+    public Integer getCallbackQueryMessageId() {
         return this.callbackQueryMessageId;
     }
 
-    public void setCallbackQueryMessageId() {
+    public void setCallbackQueryMessageId(Integer callbackQueryMessageId) {
         this.callbackQueryMessageId = callbackQueryMessageId;
     }
     public void setUserName(String userName) {
@@ -97,5 +97,13 @@ public class TestContext implements Context {
     @Override
     public Items[] getOtv() {
         return  this.otv;
+    }
+
+    @Override
+    public Integer getMessageId() {
+        return this.callbackQueryMessageId;
+    }
+    public void setMessageId(Integer messageId) {
+        this.callbackQueryMessageId = messageId;
     }
 }
