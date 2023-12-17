@@ -69,4 +69,20 @@ public class AppTest {
         assertEquals("Your search query history:", sender.getMsg().getText());
         assertNotNull(sender.getMsg().getReplyMarkup());
     }
+    @Test
+    void testInlineButtons() {
+        ctx.setMessageId(123);
+        ctx.setCallbackQueryData("next");
+        ctx.getCallbackQueryChatId(id);
+        ctx.setChatId(id);
+        ctx.setText("/search oxxymiron");
+        TelegramCommandHandler handler = new TelegramCommandHandler(sender);
+        handler.handleCommand(ctx);
+        handler.handleCallbackQuery(ctx);
+        assertNotNull(sender.getMsg().getText());
+        ctx.setCallbackQueryData("prev");
+        assertNotNull(sender.getMsg());
+        assertNotNull(sender.getMsg().getReplyMarkup());
+        assertNotNull(sender.getMsg().getText());
+    }
 }
