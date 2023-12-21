@@ -52,7 +52,11 @@ public class SearchCommand implements Command {
         InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
         inlineKeyboardButton2.setText(">");
         inlineKeyboardButton2.setCallbackData("next");
+        InlineKeyboardButton inlineKeyboardButton3 = new InlineKeyboardButton();
+        inlineKeyboardButton3.setText("download");
+        inlineKeyboardButton3.setCallbackData("download");
         rowInline.add(inlineKeyboardButton1);
+        rowInline.add(inlineKeyboardButton3);
         rowInline.add(inlineKeyboardButton2);
         rowsInline.add(rowInline);
         markupInline.setKeyboard(rowsInline);

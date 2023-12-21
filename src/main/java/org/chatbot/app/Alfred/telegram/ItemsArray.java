@@ -15,6 +15,9 @@ public class ItemsArray {
         pos = (pos + 1) % items.length;
         return items[pos];
     }
+    public Items current(){
+        return items[pos];
+    }
     public Items prev() {
         pos = (pos - 1) % items.length;
         if (pos < 0 ) pos += items.length;

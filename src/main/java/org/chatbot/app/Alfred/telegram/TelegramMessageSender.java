@@ -3,8 +3,10 @@ package org.chatbot.app.Alfred.telegram;
 import org.chatbot.app.Alfred.telegram.types.MessageSender;
 import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
+import org.telegram.telegrambots.meta.api.methods.send.SendAudio;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -22,6 +24,15 @@ public class TelegramMessageSender extends DefaultAbsSender implements MessageSe
             .chatId(chatId)
             .text(message)
             .build();
+    }
+    protected SendAudio buildSendAudio(Long chatId, InputFile audioFile, InputFile thumbnailFile, String title){
+        return SendAudio
+                .builder()
+                .thumb(thumbnailFile)
+                .title(title)
+                .chatId(chatId)
+                .audio(audioFile)
+                .build();
     }
     protected SendMessage buildSendMessageWithKeyboardMarkup(Long chatId, String message,
         ReplyKeyboardMarkup markup) {
@@ -58,6 +69,14 @@ public class TelegramMessageSender extends DefaultAbsSender implements MessageSe
             e.printStackTrace();
         }
     }
+    @Override
+    public void sendAudio(Long chatId, InputFile audioFile, InputFile thumbnailFile, String title){
+        try {
+            execute(buildSendAudio(chatId, audioFile, thumbnailFile, title));
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+     }
     @Override
     public void sendMsgWithMarkup(Long chatId, String message, ReplyKeyboardMarkup markup){
         try {

@@ -4,6 +4,9 @@ package org.chatbot.app.Alfred.telegram;
 import static org.chatbot.app.Alfred.telegram.commands.SearchCommand.getInlineKeyboardMarkup;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,6 +21,8 @@ import org.chatbot.app.Alfred.telegram.types.Command;
 import org.chatbot.app.Alfred.telegram.types.Context;
 import org.chatbot.app.Alfred.telegram.types.MessageSender;
 import org.chatbot.app.Alfred.youtube.Items;
+import org.chatbot.app.Alfred.youtube.YoutubeDownloader;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 
 public class TelegramCommandHandler {
     private final HashMap<Integer, ItemsArray> cache;
@@ -62,6 +67,27 @@ public class TelegramCommandHandler {
         Integer messageId = ctx.getCallbackQueryMessageId() - 2;
         if (!(cache.containsKey(messageId))) {
             return;
+        }
+        if (Objects.equals(ctx.getCallbackQueryData(), "download")){
+            ItemsArray items = cache.get(messageId);
+            Items item = items.current();
+            try{
+                String[] info = new YoutubeDownloader(item.getId().getVideoId()).getDownloadInfo();
+                String title = item.getSnippet().getTitle().replace("&quot;", "\"");
+                URL audio = new URI(info[1]).toURL();
+                URL thumbnail = new URI(info[0]).toURL();
+
+                InputFile audioFile = new InputFile(audio.openStream(), "audio.m4a");
+                InputFile thumbnailFile = new InputFile(thumbnail.openStream(), "thumbnail.jpeg");
+                messageSender.sendAudio(ctx.getCallbackQueryChatId(), audioFile,
+                        thumbnailFile, title);
+
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
         }
         if (Objects.equals(ctx.getCallbackQueryData(), "next")) {
             ItemsArray items = cache.get(messageId);
