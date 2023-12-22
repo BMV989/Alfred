@@ -3,6 +3,7 @@ package org.chatbot.app.Alfred;
 import org.chatbot.app.Alfred.telegram.types.MessageSender;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
@@ -12,6 +13,11 @@ public class TestMessageSender implements MessageSender {
     @Override
     public void sendMsg(Long chatId, String message) {
         msg = SendMessage.builder().chatId(chatId).text(message).build();
+    }
+
+    @Override
+    public void sendAudio(Long chatId, InputFile audioFile, InputFile thumbnailFile, String title) {
+
     }
 
     @Override

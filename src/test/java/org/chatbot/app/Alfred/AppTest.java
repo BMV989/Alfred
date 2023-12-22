@@ -1,13 +1,15 @@
 package org.chatbot.app.Alfred;
 
 import static org.chatbot.app.Alfred.TestContext.db;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.chatbot.app.Alfred.telegram.TelegramCommandHandler;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -35,8 +37,8 @@ public class AppTest {
         assertEquals(sender.getMsg().getChatId(), id.toString());
         assertNotNull(sender.getMsg().getText());
     }
-    @BeforeAll
-    static void setupDB() {
+    @BeforeEach
+    void setupDB() {
         db.up();
         db.insert(id, "oxxxymiron");
         db.insert(id, "Хан Замай");
@@ -44,8 +46,8 @@ public class AppTest {
         db.insert(id, "Мэйби Бэйби");
         db.insert(id, "Каспийский груз");
     }
-    @AfterAll
-    static void clearDB() {
+    @AfterEach
+    void clearDB() {
         db.down();
     }
     @Test
@@ -54,10 +56,10 @@ public class AppTest {
         TelegramCommandHandler handler = new TelegramCommandHandler(sender);
         handler.handleCommand(ctx);
         assertEquals("""
-            Oxxxymiron feat. 1.Kla$ — 1.Kla$ Pt. 2 (2023)
+            OXXXYMIRON — Лига Опасного Интернета (2023)
             oxxxymironofficial
-            https://www.youtube.com/watch?v=ZtCspCOOwRE
-            2023-08-11T12:55:36Z""", sender.getMsg().getText());
+            https://www.youtube.com/watch?v=kkXXrRxmAyw
+            2023-08-11T12:55:36Z""",sender.getMsg().getText());
     }
     @Test
     void testHistoryCommand(){
